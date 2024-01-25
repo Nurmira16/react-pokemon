@@ -1,14 +1,15 @@
 const Pokemon = ({ pokemon }) => {
-  console.log(pokemon);
+  if (!pokemon.hasOwnProperty("name")) return <div>There is no property</div>;
+
   return (
     <div className="pokemonCard">
       <div className="characteristics">
         <p className="PokeTitle">{pokemon.name && pokemon.species.name}</p>
-        <p>
-          Type:<br></br>
+        <p className="PokeType">
+          Type: <br />
           {pokemon.types && pokemon.types[0].type.name}
         </p>
-        <p>{pokemon.id}</p>
+        <p className="PokeId">{pokemon.id}</p>
       </div>
       {pokemon.sprites && (
         <img
