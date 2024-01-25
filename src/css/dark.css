@@ -1,0 +1,6 @@
+.app.dark {
+  --background-color: #334155;
+  --button-color: #25303f;
+  --background-input: rgb(25, 32, 42, 1);
+  --card: yellow;
+}

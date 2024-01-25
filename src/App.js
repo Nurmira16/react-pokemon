@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { fetchData, fetchPokemonByName } from "./fetchData";
-import Card from "./components/Card";
 import Pokemon from "./components/Pokemon";
+import "./index.css";
+import { useTheme } from "./components/useTheme";
 
 const App = () => {
+  const { theme, handleTheme } = useTheme();
   const [currentPokemon, setCurrentPokemon] = useState({});
   const inputRef = useRef(null);
   const handleInput = () => {
@@ -11,13 +13,20 @@ const App = () => {
       setCurrentPokemon(data)
     );
   };
-  console.log(currentPokemon);
   return (
-    <div>
-      <input ref={inputRef}></input>
-      <button onClick={handleInput}>Search</button>
-      <Pokemon pokemon={currentPokemon}></Pokemon>
-    </div>
+    <>
+      <nav></nav>
+      <div className={`app ${theme}`}>
+        <div className="search">
+          <input className="input" ref={inputRef}></input>
+          <button className="btn" onClick={handleInput}>
+            Search
+          </button>
+        </div>
+        <button onClick={handleTheme}>Change</button>
+        <Pokemon pokemon={currentPokemon}></Pokemon>
+      </div>
+    </>
   );
 };
 

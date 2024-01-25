@@ -1,0 +1,67 @@
+@import "./css/dark.css";
+@import "./css/light.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+nav {
+  height: 50px;
+  width: 100%;
+}
+.app {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--button-color);
+  height: 100vh;
+  width: 100%;
+}
+.input {
+  background-color: #334155;
+  border: none;
+  border-radius: 8px;
+  padding: 4px;
+  color: #fff;
+  text-align: center;
+}
+.btn {
+  background-color: #334155;
+  border: none;
+  border-radius: 8px;
+  padding: 4px;
+  color: #fff;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pokemonCard {
+  height: 150px;
+  width: 300px;
+  background: var(--card);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  padding: 5px;
+}
+.pokeImage {
+  height: 100px;
+  z-index: 1;
+}
+.pokeBall {
+  height: 60px;
+  position: absolute;
+  top: 63%;
+  left: 81%;
+  /* opacity: 0.4; */
+}
+.characteristics {
+  display: flex;
+  flex-direction: column;
+}
