@@ -9,7 +9,7 @@ const Pokemon = ({ pokemon }) => {
           Type: <br />
           {pokemon.types && pokemon.types[0].type.name}
         </p>
-        <p className="PokeId">{pokemon.id}</p>
+        <p className="PokeId">{pokemon.weight}</p>
       </div>
       {pokemon.sprites && (
         <img

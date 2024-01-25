@@ -5,12 +5,14 @@ import "./index.css";
 import { useTheme } from "./components/useTheme";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Skeleton from "./components/Skeleton";
+import { sortPokemons } from "./components/helper";
 
 const App = () => {
   const [pag, setPag] = useState({
     from: 1,
     till: 20,
   });
+  const [sortBy, setSortBy] = useState("");
   const { theme, handleTheme, themeName } = useTheme();
   const [currentPokemon, setCurrentPokemon] = useState({});
   const [pokemonsList, setPokemonsList] = useState([]);
@@ -19,6 +21,9 @@ const App = () => {
     fetchPokemonByName(inputRef.current.value).then((data) =>
       setCurrentPokemon(data)
     );
+  };
+  const handleType = (e) => {
+    setSortBy(e.target.name);
   };
   // useEffect(() => {
   //   fetchData(pag.from, pag.till).then((data) => {
@@ -62,17 +67,28 @@ const App = () => {
             Search
           </button>
         </div>
+
         <div className="currentPokemon">
           <Pokemon pokemon={currentPokemon}></Pokemon>
         </div>
+
+        <button name="weight" onClick={handleType}>
+          most fat
+        </button>
         <div className="pokemonList">
           <InfiniteScroll
             hasMore={true}
             next={submitPokemons}
             dataLength={pokemonsList.length}
-            loader={<Skeleton />}
+            loader={
+              <div>
+                {[...Array(20)].map((item) => (
+                  <Skeleton />
+                ))}
+              </div>
+            }
           >
-            {pokemonsList.map((item) => (
+            {sortPokemons(pokemonsList, sortBy).map((item) => (
               <Pokemon pokemon={item} />
             ))}
           </InfiniteScroll>
