@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useRef, useState } from "react";
+import { fetchData, fetchPokemonByName } from "./fetchData";
+import Card from "./components/Card";
+import Pokemon from "./components/Pokemon";
 
-function App() {
+const App = () => {
+  const [currentPokemon, setCurrentPokemon] = useState({});
+  const inputRef = useRef(null);
+  const handleInput = () => {
+    fetchPokemonByName(inputRef.current.value).then((data) =>
+      setCurrentPokemon(data)
+    );
+  };
+  console.log(currentPokemon);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input ref={inputRef}></input>
+      <button onClick={handleInput}>Search</button>
+      <Pokemon pokemon={currentPokemon}></Pokemon>
     </div>
   );
-}
+};
 
 export default App;
