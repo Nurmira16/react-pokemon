@@ -8,9 +8,9 @@ export const fetchPokemonByName = async (name) => {
   const data = await $api.get(`/${name}`);
   return data.data;
 };
-export const fetchData = async () => {
+export const fetchData = async (from, till) => {
   const result = [];
-  for (let i = 1; i <= 7; i++) {
+  for (let i = from; i <= till; i++) {
     const data = await $api.get("/" + i);
     result.push(data.data);
   }

@@ -77,7 +77,7 @@ nav {
   display: flex;
   flex-direction: column;
 }
-.pokemonList {
+.infinite-scroll-component {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

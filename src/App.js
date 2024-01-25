@@ -3,8 +3,14 @@ import { fetchData, fetchPokemonByName } from "./fetchData";
 import Pokemon from "./components/Pokemon";
 import "./index.css";
 import { useTheme } from "./components/useTheme";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Skeleton from "./components/Skeleton";
 
 const App = () => {
+  const [pag, setPag] = useState({
+    from: 1,
+    till: 20,
+  });
   const { theme, handleTheme, themeName } = useTheme();
   const [currentPokemon, setCurrentPokemon] = useState({});
   const [pokemonsList, setPokemonsList] = useState([]);
@@ -14,14 +20,33 @@ const App = () => {
       setCurrentPokemon(data)
     );
   };
+  // useEffect(() => {
+  //   fetchData(pag.from, pag.till).then((data) => {
+  //     const newData = [...pokemonsList, ...data];
+  //     setPokemonsList(newData);
+  //   });
+  // }, [pag]);
   useEffect(() => {
-    fetchData().then((data) => {
-      const newData = [...pokemonsList, ...data];
-      setPokemonsList(newData);
-    });
+    submitPokemons();
   }, []);
   console.log(pokemonsList);
-
+  const nextPage = () => {
+    setPag((prev) => ({ ...prev, from: prev.from + 20, till: prev.till + 20 }));
+  };
+  const submitPokemons = () => {
+    fetchData(pag.from, pag.till)
+      .then((data) => {
+        const newData = pokemonsList.concat(data);
+        setPokemonsList(newData);
+      })
+      .then((data) => {
+        setPag((prev) => ({
+          ...prev,
+          from: prev.from + 20,
+          till: prev.till + 20,
+        }));
+      });
+  };
   return (
     <>
       <nav>
@@ -41,10 +66,19 @@ const App = () => {
           <Pokemon pokemon={currentPokemon}></Pokemon>
         </div>
         <div className="pokemonList">
-          {pokemonsList.map((item) => (
-            <Pokemon pokemon={item} />
-          ))}
+          <InfiniteScroll
+            hasMore={true}
+            next={submitPokemons}
+            dataLength={pokemonsList.length}
+            loader={<Skeleton />}
+          >
+            {pokemonsList.map((item) => (
+              <Pokemon pokemon={item} />
+            ))}
+          </InfiniteScroll>
         </div>
+        <button onClick={nextPage}>Next</button>
+        <button>Prev</button>
       </div>
     </>
   );
