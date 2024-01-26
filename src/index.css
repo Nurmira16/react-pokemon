@@ -121,3 +121,14 @@ nav {
   background-color: #eff170;
   color: #334155;
 }
+.mainPart {
+  display: flex;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 100px;
+  padding-top: 100px;
+  gap: 20px;
+}
