@@ -52,6 +52,7 @@ const App = () => {
         }));
       });
   };
+  console.log(pokemonsList);
   return (
     <>
       <nav>
@@ -74,6 +75,9 @@ const App = () => {
 
         <button name="weight" onClick={handleType}>
           most fat
+        </button>
+        <button name="attack" onClick={handleType}>
+          strongest
         </button>
         <div className="pokemonList">
           <InfiniteScroll

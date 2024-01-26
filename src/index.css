@@ -52,7 +52,7 @@ nav {
   gap: 10px;
 }
 .pokemonCard {
-  height: 150px;
+  height: 200px;
   width: 300px;
   background: var(--card);
   border-radius: 10px;
@@ -102,4 +102,6 @@ nav {
   background-color: #334155;
   border-radius: 8px;
   color: #fff;
+  font-size: 12px;
+  padding: 3px;
 }
