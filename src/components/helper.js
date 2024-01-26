@@ -15,3 +15,6 @@ export const sortPokemons = (list, type) => {
   // console.log(sortedList);
   return sortedList;
 };
+export const sortClass = (boolean, cls) => {
+  return boolean ? cls : "";
+};

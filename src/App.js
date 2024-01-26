@@ -5,7 +5,7 @@ import "./index.css";
 import { useTheme } from "./components/useTheme";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Skeleton from "./components/Skeleton";
-import { sortPokemons } from "./components/helper";
+import { sortClass, sortPokemons } from "./components/helper";
 
 const App = () => {
   const [pag, setPag] = useState({
@@ -75,13 +75,22 @@ const App = () => {
         <div className="currentPokemon">
           <Pokemon pokemon={currentPokemon}></Pokemon>
         </div>
-
-        <button name="weight" onClick={handleType}>
-          most fat
-        </button>
-        <button name="attack" onClick={handleType}>
-          strongest
-        </button>
+        <div className="compareBtn">
+          <button
+            name="weight"
+            id={sortClass(sortBy === "weight", "active")}
+            onClick={handleType}
+          >
+            most fat
+          </button>
+          <button
+            name="attack"
+            id={sortClass(sortBy === "attack", "active")}
+            onClick={handleType}
+          >
+            strongest
+          </button>
+        </div>
         <div className="pokemonList">
           <InfiniteScroll
             hasMore={true}
