@@ -18,9 +18,13 @@ const App = () => {
   const [pokemonsList, setPokemonsList] = useState([]);
   const inputRef = useRef(null);
   const handleInput = () => {
-    fetchPokemonByName(inputRef.current.value).then((data) =>
-      setCurrentPokemon(data)
-    );
+    fetchPokemonByName(inputRef.current.value)
+      .then((data) => {
+        setCurrentPokemon(data);
+      })
+      .catch((error) => {
+        console.log("Error handling input:", error);
+      });
   };
   const handleType = (e) => {
     setSortBy(e.target.name);
@@ -34,7 +38,6 @@ const App = () => {
   useEffect(() => {
     submitPokemons();
   }, []);
-  console.log(pokemonsList);
   const nextPage = () => {
     setPag((prev) => ({ ...prev, from: prev.from + 20, till: prev.till + 20 }));
   };
@@ -44,7 +47,7 @@ const App = () => {
         const newData = pokemonsList.concat(data);
         setPokemonsList(newData);
       })
-      .then((data) => {
+      .then(() => {
         setPag((prev) => ({
           ...prev,
           from: prev.from + 20,
@@ -52,7 +55,7 @@ const App = () => {
         }));
       });
   };
-  console.log(pokemonsList);
+  // console.log(pokemonsList);
   return (
     <>
       <nav>

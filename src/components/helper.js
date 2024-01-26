@@ -12,6 +12,6 @@ export const sortPokemons = (list, type) => {
       return sortedList.sort(sortAttack);
     }
   }
-  console.log(sortedList);
+  // console.log(sortedList);
   return sortedList;
 };

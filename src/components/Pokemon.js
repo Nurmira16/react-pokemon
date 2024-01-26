@@ -1,5 +1,8 @@
 const Pokemon = ({ pokemon }) => {
-  if (!pokemon.hasOwnProperty("name")) return <div>There is no property</div>;
+  // console.log("Pokemon data:", pokemon);
+  if (!pokemon || !pokemon.name) {
+    return <div>There is no pokemon</div>;
+  }
 
   return (
     <div className="pokemonCard">
