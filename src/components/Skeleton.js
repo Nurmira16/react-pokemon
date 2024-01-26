@@ -1,7 +1,11 @@
 const Skeleton = () => {
   return (
     <div
-      style={{ backgroundColor: "grey", width: "200px", height: "400px" }}
+      style={{
+        backgroundColor: "grey",
+        width: "200px",
+        height: "200px",
+      }}
     ></div>
   );
 };

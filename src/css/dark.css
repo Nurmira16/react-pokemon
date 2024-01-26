@@ -4,3 +4,13 @@
   --background-input: rgb(25, 32, 42, 1);
   --card: #475a75;
 }
+.navlink.dark {
+  --navlink: #25303f;
+}
+
+.sidebar.dark {
+  --sidebar: transparent;
+}
+.navBtn.dark {
+  --navBtn: #475a75;
+}

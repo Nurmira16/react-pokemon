@@ -5,3 +5,12 @@
   --background-input: #e5e7eb;
   --card: #475a75;
 }
+.sidebar.light {
+  --sidebar: #25303f;
+}
+.navlink.light {
+  --navlink: #fff;
+}
+.navBtn.light {
+  --navBtn: #fff;
+}

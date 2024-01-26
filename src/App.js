@@ -1,14 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { fetchData, fetchPokemonByName } from "./fetchData";
-import Pokemon from "./components/Pokemon";
 import "./index.css";
 import { useTheme } from "./components/useTheme";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Skeleton from "./components/Skeleton";
-import { sortClass, sortPokemons } from "./components/helper";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MainPage from "./MainPage";
 import Sidebar from "./components/SideBar";
+import AboutPage from "./components/AboutPage";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 const App = () => {
   const { theme, handleTheme, themeName } = useTheme();
@@ -16,17 +13,30 @@ const App = () => {
   return (
     <>
       <nav>
-        <img src={require("./components/pokemonLogo.png")}></img>
-        <button className="navBtn" onClick={handleTheme}>
-          {themeName}
-        </button>
+        <img src={require("./components/pokemonLogo.png")} alt="logo"></img>
+        <div className="navright">
+          <a href="https://github.com/Nurmira16" target="blank">
+            <FaGithub style={{ fontSize: "25px" }} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/nurmirazhorobekkyzy/"
+            target="blank"
+          >
+            <FaLinkedin style={{ fontSize: "25px" }} />
+          </a>
+
+          <button className={`navBtn ${theme}`} onClick={handleTheme}>
+            {themeName}
+          </button>
+        </div>
       </nav>
       <div className="mainPart">
         <Sidebar />
         <div className="routes">
           <Routes>
-            <Route path="/" element={<>Hello</>}></Route>
-            <Route path="/pokemons" element={<MainPage />}></Route>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/pokemons" element={<MainPage />} />
           </Routes>
         </div>
       </div>
